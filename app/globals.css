@@ -1,0 +1,458 @@
+/*
+  FIDA
+  ====
+
+  TYPEFACES
+
+  Display, Bodoni Moda. A didone, which is the letterform family of fashion
+  mastheads, and it carries that association without anyone having to be told.
+  Didones usually fail on screens because the hairline strokes disappear at
+  small sizes; this one is variable on an optical-size axis, so the thin strokes
+  thicken automatically as the type gets smaller and the section headings stay
+  solid at 26px. Playfair and Cormorant were ruled out by the brief. Fraunces
+  and Instrument Serif were ruled out because they are the two display serifs
+  every generated site reaches for.
+
+  Body, Instrument Sans. Humanist, and marginally narrower than most sans faces
+  at the same size, which matters here: "Chanderi silk, cotton lining" fits one
+  line on a 360px phone without hyphenating. Its large x-height keeps 17px
+  comfortable for a reader in her fifties holding the phone at arm's length,
+  which is a good part of this audience.
+
+  COLOUR
+
+  The brief asks for the garments to be the only loud thing on the page, so the
+  page is quiet and light and the cloth carries all of the colour.
+
+  This is deliberately not the cream, brass and espresso every generated luxury
+  site uses, which is a real trap: that palette is so common in the category
+  that the brand disappears into it. It is also not the near-black this site
+  briefly used. Near-black made the page itself loud, fought the warm off-white
+  wall the garments are photographed against, and lost contrast outdoors, which
+  matters when most of this audience is on a phone in Hyderabad daylight.
+
+  paper       the page. Near-white, five points of warmth rather than the
+              twenty that turns a white into a cream.
+  paper-lift  one step down, for the box a photograph occupies before it loads.
+  ink         text. Cool-shifted near-black, never #000 and never espresso.
+  mute        fabric names, hours, captions. 5.2:1 on paper.
+  rule        hairlines. Only where two real things need separating.
+  indigo      the accent, and the only saturated thing on the page that is not
+              a garment. Indigo is the third of the great Indian dyes alongside
+              madder and turmeric, it is already in the ajrakh saree in the
+              collection, and no other boutique in this category uses it. Gold
+              and maroon are what they all reach for.
+*/
+
+@import 'tailwindcss';
+
+@theme {
+  --color-paper: #efeeea;
+  --color-paper-lift: #e7e6e1;
+  --color-ink: #16181a;
+  --color-mute: #5f6469;
+  --color-rule: #dddcd7;
+  --color-indigo: #2b3a67;
+  --color-indigo-deep: #1f2b4e;
+
+  --font-display: var(--font-bodoni), Georgia, 'Times New Roman', serif;
+  --font-body: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+
+  /* One easing for the whole site. Motion that shares a curve reads as one
+     piece of software rather than as a pile of separate effects. */
+  --ease-fida: cubic-bezier(0.22, 0.61, 0.24, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    background-color: var(--color-paper);
+    color-scheme: light;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  @media (min-width: 48rem) {
+    body {
+      font-size: 1.125rem;
+    }
+  }
+
+  /* Bodoni's default optical size is tuned for text, not for a 96px wordmark.
+     Letting it size optically is what gives the didone its stroke contrast. */
+  .display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    letter-spacing: -0.012em;
+    line-height: 1.08;
+  }
+
+  ::selection {
+    background-color: var(--color-indigo);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-indigo);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+/* =========================================================================
+   MOTION
+
+   Four things move on this site, and each one is answering something.
+
+   1. The page settling on first load, once, on the hero only.
+   2. A section arriving as you reach it. Heading and opening line only, never
+      the grid items, so the collection never appears to assemble itself.
+   3. A photograph responding to a cursor or a tap.
+   4. Something opening: the gallery, a question, a new page.
+
+   Everything uses transform and opacity only, so none of it touches layout.
+   All of it is off under prefers-reduced-motion.
+   ========================================================================= */
+
+@keyframes fida-settle {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+
+@keyframes fida-uncover {
+  from {
+    opacity: 0;
+    clip-path: inset(8% 8% 8% 8%);
+  }
+}
+
+/*
+  Deliberately transform only, with no opacity in it.
+
+  An entrance animation must never be the thing that decides whether text is
+  readable. If the scroll timeline resolves oddly, or the visitor deep-links
+  into the middle of the page, or support is partial, a reveal that fades in
+  from opacity 0 ships a blank section. This one cannot: the worst case is a
+  heading sitting ten pixels low, which nobody will ever see.
+*/
+@keyframes fida-rise {
+  from {
+    transform: translateY(0.65rem);
+  }
+}
+
+.settle {
+  animation: fida-settle 620ms var(--ease-fida) both;
+}
+
+.uncover {
+  animation: fida-uncover 900ms var(--ease-fida) both;
+}
+
+/*
+  The route transition. Next remounts app/template.tsx on every navigation, so
+  an animation declared there runs once per page, with no library.
+
+  Opacity only, and that is not a stylistic choice. This element wraps the
+  whole page, and an element with a transform animation becomes the containing
+  block for every position:fixed descendant inside it. Put any movement here
+  and the sticky WhatsApp bar stops being fixed to the viewport and starts
+  being fixed to the document, which puts it thousands of pixels down the page.
+*/
+@keyframes fida-enter {
+  from {
+    opacity: 0;
+  }
+}
+
+.enter {
+  animation: fida-enter 380ms var(--ease-fida) both;
+}
+
+/*
+  Section arrivals, driven by the scroll timeline rather than by JavaScript.
+  No scroll listener, no observer, nothing on the main thread. Where the
+  browser does not support it the content is simply there, which is the correct
+  fallback, so no guard is needed beyond this @supports block.
+*/
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .rise {
+      animation: fida-rise linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 28%;
+    }
+  }
+}
+
+/*
+  A photograph in a fixed frame. The frame never moves, so nothing reflows;
+  only the image inside it scales. This is the whole hover language of the
+  site, used on every garment.
+*/
+/*
+  A collection tile. The width and the shape both come from custom properties
+  set per garment in Collection.tsx, because the layout is worked out at render
+  time and Tailwind can only generate class names it can see in the source.
+*/
+.tile {
+  grid-column: span var(--mspan) / span var(--mspan);
+  aspect-ratio: var(--mratio);
+}
+
+@media (min-width: 40rem) {
+  .tile {
+    grid-column: span var(--span) / span var(--span);
+    aspect-ratio: var(--ratio);
+  }
+}
+
+.frame {
+  overflow: clip;
+}
+
+.frame img {
+  transition: scale 700ms var(--ease-fida), filter 700ms var(--ease-fida);
+}
+
+/* Gated to real pointers. On a touchscreen a tap fires a hover, and the
+   photograph would scale up and stay there after the finger has gone. */
+@media (hover: hover) and (pointer: fine) {
+  .group:hover .frame img {
+    scale: 1.035;
+  }
+}
+
+.group:focus-visible .frame img {
+  scale: 1.035;
+}
+
+/*
+  WORN BY YOU
+
+  Eight photographs travel to the right on a repeating wave. The component
+  gives each card two values: `--d` is its depth on the wave and `--s` is the
+  slope beneath it. The two identical sets meet at the same phase, so the loop
+  can restart without a jump.
+*/
+.wall {
+  overflow: clip;
+  padding-block: 0.75rem 4.25rem;
+}
+
+.wall-track {
+  --wall-gap: clamp(0.7rem, 1.6vw, 1.2rem);
+  will-change: transform;
+}
+
+.wall-set {
+  gap: var(--wall-gap);
+  padding-right: var(--wall-gap);
+}
+
+.wall-card {
+  --drop: 2.75rem;
+  --tilt: 8deg;
+  --shrink: 0.06;
+
+  width: clamp(7rem, 28vw, 9.5rem);
+  transform: translateY(calc(var(--d) * var(--drop))) rotate(calc(var(--s) * var(--tilt)))
+    scale(calc(1 - var(--d) * var(--shrink)));
+  transform-origin: 50% 0;
+}
+
+@media (min-width: 40rem) {
+  .wall {
+    padding-block-end: 7rem;
+  }
+
+  .wall-card {
+    --drop: 5.5rem;
+    --tilt: 13deg;
+    --shrink: 0.1;
+
+    width: clamp(8.5rem, 12vw, 10.5rem);
+  }
+}
+
+@keyframes fida-wall-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .wall-track {
+    animation: fida-wall-right 38s linear infinite;
+  }
+
+  .wall:focus-within .wall-track {
+    animation-play-state: paused;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .wall:hover .wall-track {
+    animation-play-state: paused;
+  }
+}
+
+/* A card the cursor is on straightens up and comes forward, which is the same
+   gesture as picking one photograph out of a pile to look at it properly.
+   Gated to real pointers for the same reason the garment tiles are: on a
+   touchscreen a tap fires a hover and the card would stay picked up. */
+@media (hover: hover) and (pointer: fine) {
+  .wall-card {
+    transition: transform 520ms var(--ease-fida);
+  }
+
+  .wall-card:has(:hover),
+  .wall-card:has(:focus-visible) {
+    transform: translateY(calc(var(--d) * var(--drop) - 0.5rem)) rotate(0) scale(1);
+  }
+}
+
+/* With motion reduced, the first set becomes a normal finger-scrollable row
+   and the duplicated set disappears. */
+@media (prefers-reduced-motion: reduce) {
+  .wall {
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+
+  .wall::-webkit-scrollbar {
+    display: none;
+  }
+
+  .wall-track {
+    padding-inline: 1.25rem;
+  }
+
+  .wall-set[aria-hidden='true'] {
+    display: none;
+  }
+
+  .wall-card {
+    scroll-snap-align: center;
+  }
+}
+
+/* A rule that draws in from the left rather than appearing all at once. */
+.draw {
+  background-image: linear-gradient(var(--color-indigo), var(--color-indigo));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 420ms var(--ease-fida);
+  padding-bottom: 0.2em;
+}
+
+.draw:hover,
+.draw:focus-visible {
+  background-size: 100% 1px;
+}
+
+/*
+  The primary button. The fill wipes up from the baseline, which is a fraction
+  slower than a colour swap and reads as the button acknowledging the press
+  rather than just changing state.
+*/
+.action {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.action::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--color-indigo-deep);
+  transform: translateY(101%);
+  transition: transform 380ms var(--ease-fida);
+}
+
+.action:hover::before,
+.action:focus-visible::before {
+  transform: translateY(0);
+}
+
+.action:active {
+  transform: translateY(1px);
+}
+
+/*
+  Questions open and close. Native <details> cannot normally be animated
+  because the browser toggles display outright; ::details-content plus
+  interpolate-size is the current way to do it without rebuilding the
+  disclosure in JavaScript and losing the keyboard and screen reader
+  behaviour that comes free with the element.
+*/
+@supports (interpolate-size: allow-keywords) {
+  :root {
+    interpolate-size: allow-keywords;
+  }
+
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+    transition:
+      block-size 420ms var(--ease-fida),
+      content-visibility 420ms var(--ease-fida) allow-discrete,
+      opacity 320ms var(--ease-fida);
+  }
+
+  details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+.marker {
+  transition: transform 380ms var(--ease-fida);
+}
+
+details[open] .marker {
+  transform: rotate(45deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scale: none !important;
+  }
+}
