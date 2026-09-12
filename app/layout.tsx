@@ -2,9 +2,9 @@ import type { Metadata, Viewport } from 'next';
 import { Bodoni_Moda, Instrument_Sans } from 'next/font/google';
 import Link from 'next/link';
 import './globals.css';
-import { site, addressOneLine, mapsDirectionsUrl, whatsappUrl } from '@/data/site';
+import { site, whatsappUrl } from '@/data/site';
 
-const pageTitle = `${site.fullName}, ethnic wear in ${site.address.neighbourhood}, ${site.address.city}`;
+const pageTitle = site.fullName;
 
 const bodoni = Bodoni_Moda({
   subsets: ['latin'],
@@ -19,60 +19,16 @@ const instrument = Instrument_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(site.url),
   title: {
     default: pageTitle,
     template: `%s, ${site.name}`,
   },
   description: site.description,
-  alternates: { canonical: '/' },
-  openGraph: {
-    type: 'website',
-    siteName: site.fullName,
-    locale: 'en_IN',
-    title: pageTitle,
-    description: site.description,
-    url: site.url,
-    images: [{ url: '/og.jpg', width: 1200, height: 630, alt: `${site.name} boutique` }],
-  },
-  twitter: { card: 'summary_large_image' },
-  robots: { index: true, follow: true },
+  robots: { index: false, follow: false },
 };
 
 export const viewport: Viewport = {
   themeColor: '#efeeea',
-};
-
-/* What Google reads to place the boutique on the map and in local results. */
-const localBusiness = {
-  '@context': 'https://schema.org',
-  '@type': 'ClothingStore',
-  name: site.fullName,
-  description: site.description,
-  url: site.url,
-  telephone: site.phoneDial,
-  image: `${site.url}/og.jpg`,
-  hasMap: mapsDirectionsUrl,
-  priceRange: '₹₹',
-  foundingDate: String(site.establishedYear),
-  currenciesAccepted: 'INR',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: `${site.address.line1}, ${site.address.line2}, ${site.address.neighbourhood}`,
-    addressLocality: site.address.city,
-    addressRegion: site.address.state,
-    postalCode: site.address.postalCode,
-    addressCountry: site.address.country,
-  },
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '11:00',
-      closes: '20:00',
-    },
-  ],
-  sameAs: [`https://instagram.com/${site.instagram}`],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -118,11 +74,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div>
                 <h2 className="text-[0.95rem]">Where</h2>
                 <address className="mt-4 text-[0.92rem] not-italic leading-relaxed text-mute">
-                  {site.address.line1}
-                  <br />
-                  {site.address.line2}
-                  <br />
-                  {site.address.neighbourhood}, {site.address.city} {site.address.postalCode}
+                  Address available on request.
                 </address>
                 <dl className="mt-5 text-[0.92rem] text-mute">
                   {site.hours.map((h) => (
@@ -152,34 +104,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     {site.phoneDisplay}
                   </a>
                 </li>
-                <li>
-                  <a
-                    href={`https://instagram.com/${site.instagram}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="draw inline-block py-2"
-                  >
-                    Instagram, @{site.instagram}
-                  </a>
-                </li>
-                <li>
-                  <a href={mapsDirectionsUrl} target="_blank" rel="noopener noreferrer" className="draw inline-block py-2">
-                    Directions
-                  </a>
-                </li>
+                <li>Location shared on request.</li>
               </ul>
             </div>
 
             <p className="mt-14 pb-20 text-[0.85rem] text-mute sm:pb-0">
-              © {new Date().getFullYear()} {site.fullName}, {addressOneLine}.
+              © {new Date().getFullYear()} {site.fullName}.
             </p>
           </div>
         </footer>
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
-        />
       </body>
     </html>
   );

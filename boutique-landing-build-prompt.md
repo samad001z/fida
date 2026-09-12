@@ -11,8 +11,8 @@ Reusable across boutique clients. Swap tokens, keep everything else.
 |---|---|
 | `{{BRAND_NAME}}` | Aara |
 | `{{TAGLINE}}` | Hand-finished ethnic wear, made to your measurements |
-| `{{CITY_AREA}}` | Jubilee Hills, Hyderabad |
-| `{{FULL_ADDRESS}}` | 101B, Westend Mall, Road No. 36 |
+| `{{CITY_AREA}}` | Location shared on request |
+| `{{FULL_ADDRESS}}` | Address available on request |
 | `{{WHATSAPP_NUMBER}}` | 919XXXXXXXXX (country code, no +, no spaces) |
 | `{{INSTAGRAM_HANDLE}}` | @brandhandle |
 | `{{HOURS}}` | 11am to 8pm, closed Sundays |

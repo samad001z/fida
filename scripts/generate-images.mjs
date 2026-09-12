@@ -21,7 +21,7 @@
      arrives, so the page never flashes empty.
 */
 
-import { mkdir, readFile, readdir, writeFile, access, rm } from 'node:fs/promises';
+import { mkdir, readFile, readdir, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
 
@@ -112,7 +112,7 @@ await mkdir(featuresDir, { recursive: true });
 
 /** Every file name the site knows what to do with, without its extension. */
 const wanted = new Map(
-  [...imagePaths, ...featurePaths, '/hero.jpg', '/interior.jpg', '/og.jpg'].map((src) => [
+  [...imagePaths, ...featurePaths, '/hero.jpg', '/interior.jpg'].map((src) => [
     path.basename(src, '.jpg'),
     src,
   ]),
@@ -184,32 +184,6 @@ for (const [name, w, h] of [
   const file = path.join(root, 'public', name);
   if (await exists(file)) continue;
   await weave(file, cloth[name.replace('.jpg', '')], w, h, name.length * 613);
-  made++;
-}
-
-/* ---- 2b. the share picture --------------------------------------------
-   This is the image WhatsApp and Instagram show when someone forwards a link
-   to the site. Delete public/og.jpg and run again to rebuild it. */
-
-const ogFile = path.join(root, 'public', 'og.jpg');
-if (!(await exists(ogFile))) {
-  const field = path.join(root, 'public', '.og-field.jpg');
-  await weave(field, [233, 232, 227], 1200, 630, 4211);
-  const label = Buffer.from(
-    `<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
-       <text x="90" y="330" font-family="Georgia, serif" font-size="132"
-             fill="#16181a">Fida</text>
-       <text x="96" y="392" font-family="Georgia, serif" font-size="30"
-             fill="#2b3a67">Ethnic wear, stitched to your measurements</text>
-       <text x="96" y="446" font-family="Georgia, serif" font-size="26"
-             fill="#5f6469">Jubilee Hills, Hyderabad</text>
-     </svg>`,
-  );
-  await sharp(field)
-    .composite([{ input: label, top: 0, left: 0 }])
-    .jpeg({ quality: 88, mozjpeg: true })
-    .toFile(ogFile);
-  await rm(field);
   made++;
 }
 

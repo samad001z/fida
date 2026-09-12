@@ -40,8 +40,8 @@ she cannot do herself.
 
 ## STYLE, paste this first, every time
 
-> Editorial lookbook photograph for a designer ethnic-wear boutique in
-> Hyderabad. Soft directional daylight from a tall window to the left, no
+> Editorial lookbook photograph for a designer ethnic-wear boutique. Soft
+> directional daylight from a tall window to the left, no
 > flash, no studio strobe. Background is a plain warm off-white plaster wall,
 > the colour of unbleached cotton. Muted film-like colour, low saturation,
 > gentle contrast, warmth held in the shadows, the garment is the only
@@ -73,22 +73,11 @@ for a real business, and is what fabric-led lookbooks actually do.
 > the garment. The silk holds its own flare without any underskirt.
 
 ### `interior.jpg`, 16:10 landscape
-> The inside of a small designer ethnic-wear boutique in Hyderabad. A single
+> The inside of a small designer ethnic-wear boutique. A single
 > long rail of anarkalis and kurtas in muted colours down the left, a wooden
 > cutting counter along the far wall with folded fabric bolts stacked on it,
 > daylight from a window out of frame. Warm off-white walls, terracotta floor,
 > no people, no signage, no clutter. Calm and uncrowded.
-
-### `og.jpg`, 1.91:1 landscape (1200 × 630)
-> Three ethnic garments in wine, mustard and deep green hanging together on a
-> rail against a warm off-white wall, cropped wide and low so the garments sit
-> in the right two-thirds and the left third is empty wall. No text anywhere in
-> the image.
-
-*(The shop name and tagline are added by WhatsApp and Instagram from the page's
-own data, so this image must stay clean.)*
-
----
 
 ## The garments
 

@@ -79,7 +79,7 @@ export const products: Product[] = [
     fabricShort: 'Cotton silk, block printed',
     price: 7200,
     description:
-      'A straight-cut kurta in cotton silk with a hand block print, sold with a matching salwar and a mulmul dupatta. The cotton in the blend keeps it wearable through a Hyderabad afternoon, and the silk is what stops it reading as a daily kurta. Right for a lunch, an office function, or a visit where you want to look put together without effort.',
+      'A straight-cut kurta in cotton silk with a hand block print, sold with a matching salwar and a mulmul dupatta. The cotton in the blend keeps it wearable through a warm afternoon, and the silk is what stops it reading as a daily kurta. Right for a lunch, an office function, or a visit where you want to look put together without effort.',
     details: {
       fabric: 'Cotton silk kurta, mulmul dupatta',
       work: 'Hand block print, natural dye',
@@ -281,7 +281,7 @@ export const products: Product[] = [
     fabricShort: 'Velvet jacket, crepe inner',
     price: 16500,
     description:
-      'A short teal velvet jacket with thread and bead work along the front panels, worn over a plain crepe inner and a straight skirt. The jacket carries all the weight, so the pieces underneath stay light and you are not wearing the whole outfit at once. Made for December weddings, when Hyderabad is finally cold enough for velvet.',
+      'A short teal velvet jacket with thread and bead work along the front panels, worn over a plain crepe inner and a straight skirt. The jacket carries all the weight, so the pieces underneath stay light and you are not wearing the whole outfit at once. Made for winter weddings, when the weather is finally cool enough for velvet.',
     details: {
       fabric: 'Silk velvet jacket, crepe inner and skirt',
       work: 'Thread and bead work on the jacket panels',

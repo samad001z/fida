@@ -31,7 +31,7 @@ const questions: [string, string][] = [
   ],
   [
     'Where do I park?',
-    'There is basement parking under the mall with the entrance off Road No. 36. It fills up on Saturday evenings and through the festival weeks, so if you are coming then, come before six.',
+    'Parking details are shared when your appointment is confirmed.',
   ],
 ];
 

@@ -18,7 +18,7 @@ customer posts only after receiving permission.
 Use this at the start of every prompt:
 
 > Natural customer-style fashion photograph for a designer ethnic-wear boutique
-> in Hyderabad. Portrait 4:5. An Indian woman wearing the garment comfortably in
+> in a warm city. Portrait 4:5. An Indian woman wearing the garment comfortably in
 > a real social setting, photographed by a friend on a recent phone camera. Soft
 > natural light, believable skin and fabric texture, relaxed posture, slight
 > everyday imperfections, premium but not staged like a catalogue. The complete
@@ -46,7 +46,7 @@ Use this negative prompt for every image:
 
 > A woman in her late twenties wearing a sage green mulmul cotton kurti with a
 > small floral block print, paired with plain ivory trousers. She is on a shaded
-> Hyderabad veranda in late morning, holding a glass of nimbu pani and laughing
+> a shaded veranda in late morning, holding a glass of nimbu pani and laughing
 > just off camera. Easy everyday styling, flat sandals, loose natural hair.
 
 ## `worn-farheen-sarson-sharara.jpg`
@@ -60,7 +60,7 @@ Use this negative prompt for every image:
 
 > A woman in her early thirties wearing a deep forest green raw silk lehenga with
 > small hand-set mirror clusters and a plain fitted blouse. She is walking through
-> the courtyard of a Hyderabad wedding venue at dusk, glancing back toward the
+> the courtyard of a wedding venue at dusk, glancing back toward the
 > friend taking the photograph. The skirt is moving naturally and remains fully
 > visible.
 
@@ -82,7 +82,7 @@ Use this negative prompt for every image:
 
 > A woman in her late twenties wearing a short deep teal velvet jacket with thread
 > and bead work over a plain crepe inner and straight skirt. She is outside at a
-> December wedding in Hyderabad, photographed under soft venue lighting. Natural
+> December wedding, photographed under soft venue lighting. Natural
 > three-quarter pose, jacket open enough to show the layered outfit, no dramatic
 > fashion pose.
 

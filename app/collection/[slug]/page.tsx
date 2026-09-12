@@ -20,19 +20,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!product) return {};
 
   const title = `${product.name}, ${product.fabricShort.toLowerCase()}`;
-  const path = `/collection/${product.slug}`;
-
   return {
     title,
     description: product.description,
-    alternates: { canonical: path },
-    openGraph: {
-      type: 'article',
-      title: `${product.name}, ${site.name}`,
-      description: product.description,
-      url: path,
-      images: [{ url: product.images[0].src, width: 1200, height: 1500, alt: product.images[0].alt }],
-    },
+    robots: { index: false, follow: false },
   };
 }
 

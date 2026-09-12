@@ -5,7 +5,7 @@ import { PrimaryAction, TextLink } from '@/components/Action';
 import { Questions } from '@/components/Questions';
 import { Wall } from '@/components/Wall';
 import { products } from '@/data/products';
-import { site, mapQuery, mapsDirectionsUrl, whatsappUrl } from '@/data/site';
+import { site, whatsappUrl } from '@/data/site';
 
 /* What the shop makes, grouped the way a customer thinks about it rather than
    the way a catalogue would sort it. The number is what stitching alone costs
@@ -71,7 +71,7 @@ export default function Home() {
           </div>
 
           <p className="settle mt-6 text-[0.95rem] text-mute" style={{ animationDelay: '300ms' }}>
-            {site.address.neighbourhood}, {site.address.city}. Open {site.hours[0].time}.
+            Location shared on request. Open {site.hours[0].time}.
           </p>
         </div>
       </section>
@@ -223,8 +223,8 @@ export default function Home() {
       {/* ---- The boutique, full bleed image ------------------------------ */}
       <section className="mx-auto max-w-[84rem] px-5 pt-24 sm:px-8 sm:pt-40 lg:px-12">
         <p className="rise max-w-2xl text-[clamp(1.4rem,4.6vw,2rem)] leading-[1.35]">
-          {site.name} has been on Road No. 36 since {site.establishedYear}, in the same two rooms,
-          with the tailoring done at the back rather than sent out.
+          {site.name} has been serving clients since {site.establishedYear}, with tailoring done on
+          the premises rather than sent out.
         </p>
         <Photo
           src="/interior.jpg"
@@ -246,11 +246,7 @@ export default function Home() {
 
         <Wall />
 
-        <p>
-          <TextLink href={`https://www.instagram.com/${site.instagram}/`} external>
-            Show us how you wore it on Instagram
-          </TextLink>
-        </p>
+        <p>Show us how you wore it.</p>
       </section>
 
       {/* ---- Questions, disclosure list ---------------------------------- */}
@@ -272,11 +268,7 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
             <div className="space-y-8">
               <address className="text-[1.05rem] not-italic leading-[1.7]">
-                {site.address.line1}
-                <br />
-                {site.address.line2}
-                <br />
-                {site.address.neighbourhood}, {site.address.city} {site.address.postalCode}
+                Address available on request.
               </address>
 
               <dl className="space-y-2 text-[1.02rem]">
@@ -292,27 +284,17 @@ export default function Home() {
                 <p>
                   <TextLink href={`tel:${site.phoneDial}`}>{site.phoneDisplay}</TextLink>
                 </p>
-                <p>
-                  <TextLink href={mapsDirectionsUrl} external>
-                    Get directions in Google Maps
-                  </TextLink>
-                </p>
               </div>
 
               <p className="max-w-sm text-[0.95rem] leading-relaxed text-mute">
-                Basement parking is under the mall, entrance off Road No. 36. It fills up on Saturday
-                evenings and through the festival weeks.
+                Parking details are shared when your appointment is confirmed.
               </p>
             </div>
 
             <div className="aspect-[4/3] w-full bg-paper-lift lg:aspect-auto lg:min-h-[22rem]">
-              <iframe
-                title={`Map showing ${mapQuery}`}
-                src={`https://maps.google.com/maps?q=${encodeURIComponent(mapQuery)}&z=16&output=embed`}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-full w-full border-0"
-              />
+              <div className="flex h-full items-center justify-center p-8 text-center text-mute">
+                Map unavailable in this demo.
+              </div>
             </div>
           </div>
         </div>
