@@ -1,7 +1,7 @@
-# Photographs for the Fida site
+# Photographs for the boutique template
 
 Forty-five images. Generate them, drop them **flat into this folder** (no
-sub-folders), then from `C:\fida` run:
+sub-folders), then from the repository root run:
 
 ```
 npm run placeholders

@@ -1,6 +1,6 @@
 # Worn by you, demo photographs
 
-Generate these eight photographs and place them flat inside `C:\fida\FIX` using
+Generate these eight photographs and place them flat inside the template `FIX` folder using
 the exact file names below. Any common image format is fine. Then run:
 
 ```powershell

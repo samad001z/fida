@@ -65,7 +65,7 @@ export function Wall() {
     <div
       className="wall -mx-5 mt-12 sm:-mx-8 lg:-mx-12"
       role="group"
-      aria-label="People wearing outfits from Fida"
+      aria-label="People wearing outfits from the boutique"
     >
       <div className="wall-track flex w-max">
         <ul className="wall-set flex shrink-0">{cards(0)}</ul>

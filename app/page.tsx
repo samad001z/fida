@@ -228,7 +228,7 @@ export default function Home() {
         </p>
         <Photo
           src="/interior.jpg"
-          alt="Inside the Fida shop, with garments on a rail and a cutting counter along the far wall"
+          alt="Inside the boutique, with garments on a rail and a cutting counter along the far wall"
           sizes="(max-width: 1024px) 100vw, 80vw"
           className="mt-10 aspect-[16/10] w-full"
         />

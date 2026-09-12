@@ -11,7 +11,7 @@
   A few notes on the fields:
 
     slug     the web address of the garment page, lowercase with hyphens.
-             `mehr-anarkali` becomes fida.com/collection/mehr-anarkali
+             `mehr-anarkali` becomes example.com/collection/mehr-anarkali
     price    a number in rupees, or `null` if the price should read
              "Price on request"
     occasion Everyday, Occasion or Wedding. This is the only thing the filter

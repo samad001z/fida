@@ -1,5 +1,5 @@
 /*
-  FIDA, every detail the owner might want to change lives in this one file.
+  TEMPLATE, every detail the owner might want to change lives in this one file.
   Change a value here and it updates everywhere on the site: the header, the
   footer, the WhatsApp buttons, the map, the Google listing data.
 
@@ -9,11 +9,11 @@
 
 export const site = {
   /** The wordmark in the header and footer. */
-  name: 'Fida',
+  name: '{{BRAND_NAME}}',
 
   /** The full trading name. Used in the page title and in the Google listing
       data, where it should match the Google Business Profile exactly. */
-  fullName: 'Fida Designer Boutique',
+  fullName: '{{BRAND_NAME}} Designer Boutique',
 
   // Shown under the brand name on the front page.
   tagline: 'Ethnic wear, hand-finished and stitched to your measurements.',
@@ -21,7 +21,7 @@ export const site = {
   // Used in the browser tab, in Google results, and in the grey preview text
   // that appears when someone pastes a link to this site into WhatsApp.
   description:
-    'Fida Designer Boutique offers ready-to-wear and made-to-measure ethnic wear, including anarkalis, salwar suits, kurtis, indo-western styles, gowns and sarees.',
+    '{{BRAND_NAME}} offers ready-to-wear and made-to-measure ethnic wear, including anarkalis, salwar suits, kurtis, indo-western styles, gowns and sarees.',
 
   // Placeholder number used for WhatsApp and the tap-to-call link.
   // Country code first, no plus sign, no spaces. India is 91.
@@ -45,7 +45,7 @@ export const site = {
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : 'https://fida.example.com'),
+      : 'https://example.com'),
 } as const;
 
 /** Builds a wa.me link with the message already typed out for the visitor. */
